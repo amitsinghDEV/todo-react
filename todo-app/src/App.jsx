@@ -8,7 +8,13 @@ let handleSubmit = (e)=>{
   setTitle('');
   setTodo([...todo,title]);
   console.log(todo)
- 
+
+ }
+ let deleteHandler=(i)=>{
+  let copyTodo = [...todo];
+  copyTodo.splice(i,1);
+  setTodo(copyTodo);
+  console.log(todo);
 }
   return (
     <>
@@ -21,8 +27,21 @@ let handleSubmit = (e)=>{
             </form>
             
           </div>
-        </div>
           
+        </div>
+        {
+
+todo.map((item,i)=>{
+    return(
+      <div style={{ display: "flex", justifyContent:"space-between"}}><h1  key={i}>{item}</h1>
+      <button onClick={()=>{
+        deleteHandler(i);
+      }} style={{backgroundColor:"red"}}>Delete</button>
+      </div>
+      
+    )
+})
+}
     </>
   )
 }
